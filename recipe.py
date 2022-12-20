@@ -35,7 +35,7 @@ def write_csv(ingredient, recipes):
 def scrape_from_internet(ingredient, start=1):
     ''' Use `requests` to get the HTML page of search results for given ingredients. '''
     response = requests.get(f"https://recipes.lewagon.com/?search[query]={ingredient}&page={start}")
-    print("***********")
+
     if len(response.history) == 0:
         return response.text
     else:
@@ -60,9 +60,9 @@ def main():
             if html == "":
                 break
             each_recipes = parse(html)
+
             recipes = recipes + each_recipes
         write_csv(ingredient, recipes)
-        pass  # YOUR CODE HERE
     else:
         print('Usage: python recipe.py INGREDIENT')
         sys.exit(0)
